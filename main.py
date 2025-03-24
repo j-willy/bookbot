@@ -5,17 +5,22 @@ def main():
     book = get_book_text(book_path)
     word_count = count_words(book)
     char_dict = count_letters(book)
+    sorted_chars = sorting_fucntion(char_dict)
+    formating(book_path,word_count,sorted_chars)
 
-    print("============ BOOKBOT ============")
-    print(f"Analyzing book found at {book_path}...")
-    print("----------- Word Count ----------")
-    print(f"{word_count} words found in the document")
-    print("--------- Character Count -------")
-    print(char_dict)
-    print("============= END ===============")
-    
 def get_book_text(filepath):
    with open(filepath) as file:
         return file.read()
 
+def formating(book_path, word_count, sorted_chars):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    for item in sorted_chars:
+        if item["char"].isalpha():
+            print(f"{item['char']}: {item['count']}")
+    print("============= END ===============")
+        
 main()
